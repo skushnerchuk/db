@@ -2,16 +2,17 @@ language: python
 python:
 - '3.6'
 install:
-- pip install ansible==2.3.0 molecule apache-libcloud
+- pip install ansible molecule apache-libcloud pycrypto
 script:
-- molecule --debug test
+- molecule test
 after_script:
-- molecule --debug destroy
+- molecule destroy
 env:
   global:
   - secure: oIwvHE4PEN39q0niq6hldeHBm8GBPbHjgoiHKXxqaJ8219JT3xZGyN+t/09sDgUn4f4DrAVSMascrgLeilWk3euVQ34CfMhnUxZrHZkBlJx205+vzDy2garuw5CwHFviUZgZKvLuiJ9oRm6TYZeoFHYswr7lgVzJ/rNqHRU3HCEqHD3uIW3a6/iEOHxHdwQ/A2eBgDn7KptDJp1DkBY8QV316+35YY3ZzsdtYQ5eYZhH5/PoVZrRjfuBemgQkPiYVTOmy9WnWWK0vXfVK2bSuzPKOyqVZJEp9nFfW93HfGfxnXJw/suJ/o+s65j3VvWWxQtTsU67xe9jBFLjl4ER37zfcK2jANnCNUFeBZcOkAbruoDa0NiS+0Z8cchov6swEyO00K3GDc3vEKpLJQd2JZs346iptw4+Z2yzkUdpV3e1KOaS1Abvmo7AJ2pzEiHWdy/SoRQfM2xtrUj/dCjRDHXuI0Jl/hfmC1y4FeyD6viLHtY+ELrUO662nkXErRX4gtXzrBGIVUgLn7USxxNUKQr3H2JqP7LLw7vXLn11haJCqEaok8SJKIXOd+L44fSB3NQEbycBL5hqWnJ6Bgdv5AKG8+5Ej2Iu5YwH0Hx5NBzsqqGljWaez8envyggim8+bEroioPHB9cfzXZb/3qn0Cn7kkprg65MfY3KAOjaatg=
   - secure: QE6aqisaAO6Au9IHWHQoUI9zZlnA2F4vetzd9h/ul1uddtys3s7ekH/COPwT+6ID/1CfYVOOLIMX/X+AxPL6x/WVvAhesAN4eJ4ckRu1HYs/LLUxpcN72H9U51+zVYS3YpH6ifll4gu2qJEmIiNzQeqxKQcy+kG8TkY3hibgodAhcmHSkPFbS562FVZyrgUoxJd+ylYfEtaCqLtZQQzwtPc+BhPEeSnpzUlNSnLBw8WeHA4yCr0YRuucMdTmWa7ivqIf/k+gAJ4oC5bsoNl4xhmOspZu5SnM4DkDg3fSSeMvGG/qET3bAJOteafBthxGi4fq5A4CXpNx/gqh0t/TRL/cqdlG1A/cPOC9MMxvIq9L/D9Ett46JVsn/VZAqdUwNZzsJpPrdvIf1SHM+UjmoLU3TnDxXjeL16MpS6Ykt62jYTAkB5qzQ8wdEGzoSOvabUYmPeLIsy+v30UdQWNG7mpb9ZVOjjCbGVF8ShyWLgR947RLqPAz97e1zpJ+pEcPlA1ccfSkShI5F+/0TZ+FStXYCo5Jt308Vt1r4ZF30MtSmF0KQ4iiiSmNkAyhz9jnzeneLuRHQMtefMRfZFCbl+TAUiPqezE/xX4HDCNxqht4yYNlXKXB/Ou1r0dI2l4PerVWlz51n0bhbzTzMUNc8Wa39C/WD1uOUOg7F53+5K8=
   - secure: fFgDuyRd4YYj0H6uvWTft2mIS366gUV0XmJjdPgEMnzBAPr6QFPeuB7wXQYuRrEWii1/KEJekdbzlvzoJndxtyflWB8hJ0OQz8eFN26nSjv0TrEkyPmoXZNF+weRR9/soqlqKOahI64+EAyr2/TneAzK5gBrwXmXqhi47XFikmIzo9ROYg7ClYt+qCKYVuVEgi3wkettdkrSNgycMaFU2q4gDUX4VRCawfEmXWsxXoLfGyjJ9rcVJQV0DryOFfpJDP0066NTIZIyQPmQYb4Hzf2Z/zDxLe3p3bQRiPwUg7BEwjzXOWc5Cmb0bjH8BDoCgMX5ljzF7/QCLScsUkWo6TkXtwPnfuCcaTuBQUZ7woNicTygGKv5CUBQTzDmPfZ7ImDUxOhQ4/Vu2tP/G3ch7ykyuZ8/vRvjHkIU/Hgtfg8GRrdnsWx/1mm2+UxmLEx+94dLn6K0h9MMljSFmbFrikhGbOHuuNw/j9zpTQA0M6nbMKzmSqga5On6zlfg+65iUCLssR6VUe9l/43or8rh2Ir+iUYsgzMPkd4GBOcLlMdIJGBltJ2XSX7R/LEl4LpzvKG9eSBjKoIEpvm/cU/Y9JEaMZS4k2j487YYfQI8v93NPo53Rp1gP/tE2mYpKPW0X9D9k+ftTRvsBecmCTtlyH/DM6zP5bONpMvn11g5/Z8=
 before_install:
-- openssl aes-256-cbc -K $encrypted_62c0abeda44b_key -iv $encrypted_62c0abeda44b_iv
-  -in secrets.tar.enc -out secrets.tar -d
+  - openssl aes-256-cbc -K $encrypted_62c0abeda44b_key -iv $encrypted_62c0abeda44b_iv
+    -in secrets.tar.enc -out secrets.tar -d
+  - mv google_compute_engine ~/.ssh
