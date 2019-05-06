@@ -16,3 +16,5 @@ env:
 before_install:
   - openssl aes-256-cbc -K $encrypted_62c0abeda44b_key -iv $encrypted_62c0abeda44b_iv
     -in secrets.tar.enc -out secrets.tar -d
+  - tar -xvf secrets.tar
+  - mv google_compute_engine ~/.ssh
