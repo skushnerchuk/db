@@ -20,3 +20,4 @@ vault.key
 credentials.json
 secrets.tar
 google_compute_engine*
+prepare.sh
